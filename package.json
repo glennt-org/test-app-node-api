@@ -1,0 +1,19 @@
+{
+  "name": "test-app-node-api",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.119",
+    "@types/node": "^20.3.1",
+    "aws-lambda": "^1.0.7",
+    "aws-sdk": "^2.1397.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9"
+  }
+}
