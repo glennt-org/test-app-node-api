@@ -41,5 +41,5 @@ jobs:
       with:
         node-version: '18.x'        
     - run: npm ci
-    - run: export ENV=${{ env }}; ./deploy.sh
+    - run: export ENV=${{ inputs.env }}; ./deploy.sh
       
