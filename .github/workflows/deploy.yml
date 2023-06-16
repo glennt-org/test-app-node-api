@@ -1,0 +1,45 @@
+name: 'test-app-node-api'
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        type: choice
+        required: true
+        description: Environment
+        options:
+        - dev
+
+permissions:
+  contents: read
+
+jobs:
+  build-deploy:
+    name: 'Build and deploy lambda function'
+    runs-on: ubuntu-latest
+    environment: production
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Configure AWS Credentials Action For GitHub Actions
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1   
+      
+    - name: Build and deploy
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'        
+    - run: npm ci
+    - run: export ENV=${{ env }}; ./deploy.sh
+      
