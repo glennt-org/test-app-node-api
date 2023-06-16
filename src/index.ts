@@ -1,10 +1,5 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-	console.log(event);
-	return {
-			statusCode: 200,
-			body: JSON.stringify({
-					message: 'some error happened',
-			}),
-	};
-};
+import "source-map-support/register";
+import serverlessExpress from "@vendia/serverless-express";
+import { app } from "./app";
+
+export const handler = serverlessExpress({ app });
