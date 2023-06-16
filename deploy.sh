@@ -1,3 +1,4 @@
+set -e
 
 if [ -z "$ENV" ]
 then
@@ -9,7 +10,7 @@ FUNCTION_NAME=$ENV-test-app-node-api
 
 echo "Build lambda fuction $FUNCTION_NAME"
 
-rm -R dist
+rm -rf dist
 npm run build
 
 cd dist
