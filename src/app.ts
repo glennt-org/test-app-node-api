@@ -4,12 +4,8 @@ import path from "path";
 import compression from "compression";
 import { getCurrentInvoke } from "@vendia/serverless-express";
 
-const ejs = require("ejs").__express;
 const app = express();
 const router = express.Router();
-
-app.set("view engine", "ejs");
-app.engine(".ejs", ejs);
 
 router.use(compression());
 router.use(cors());
